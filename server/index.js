@@ -31,7 +31,7 @@ app.post("/signin", (req, res) => {
 app.post("/register", (req, res) => {
     register.handleRegisterPost(req, res, db, bcrypt);
 });
-app.order("/order", (req, res) => {
+app.post("/order", (req, res) => {
     orders.handleOrderPost(req, res, db);
 });
 

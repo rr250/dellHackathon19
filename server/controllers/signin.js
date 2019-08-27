@@ -14,7 +14,9 @@ const handleSigninPost = (req, res, db, bcrypt) => {
                 docs[0].password
             );
             if (isPasswordValid) {
-                return res.status(200).json(docs[0]);
+                db.collection('users').updateOne({ userId: docs[0].userId }, { $set: {isAuthenticated: true }}, function (err, r) {
+                    return res.status(200).json(docs[0]);
+                })
             } else {
                 return res.status(400).json("incorrect credentials");
             }
