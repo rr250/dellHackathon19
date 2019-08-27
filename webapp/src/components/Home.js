@@ -94,38 +94,52 @@ class Home extends Component {
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div class="popular_category_image"><img src="images/best_1.png" alt=""/></div>
-                                            <div class="popular_category_text">Smartphones & Tablets</div>
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
                                         </div>
                                     </div>
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div class="popular_category_image"><img src="images/popular_2.png" alt=""/></div>
-                                            <div class="popular_category_text">Computers & Laptops</div>
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
                                         </div>
                                     </div>
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div class="popular_category_image"><img src="images/popular_3.png" alt=""/></div>
-                                            <div class="popular_category_text">Gadgets</div>
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
                                         </div>
                                     </div>
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div class="popular_category_image"><img src="images/popular_4.png" alt=""/></div>
-                                            <div class="popular_category_text">Video Games & Consoles</div>
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
                                         </div>
                                     </div>
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div class="popular_category_image"><img src="images/popular_5.png" alt=""/></div>
-                                            <div class="popular_category_text">Accessories</div>
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
                                         </div>
                                     </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
+                                        </div>
+                                    </div>
+                                    
 
                                 </OwlCarousel>
                             </div>
@@ -211,7 +225,7 @@ class Home extends Component {
                                                         <div className="banner_2_title">The New XPS 15</div>
                                                         <div className="banner_2_text">Dell's smallest 39.6cm (15.6) performance laptop with a stunning InfinityEdge display. Now featuring 8th Gen Intel® Core™ processors with up to 6 cores and 12 threads.</div>
                                                         <div className="product_price">Starting At 1,27,290.00</div>
-                                                        <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                                        <div className="rating_r rating_r_4 banner_2_rating"></div>
                                                         <div className="button banner_2_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link></div>
                                                     </div>
                                                     
@@ -236,7 +250,7 @@ class Home extends Component {
                                                 <div className="banner_2_title">New Dell G7 15 </div>
                                                 <div className="banner_2_text">38.1 cm (15) gaming laptop designed for a powerful in-game experience featuring NVIDIA® GeForce® GTX 1060 graphics and the latest 8th Gen Intel® Quad-and-Hex Core™ CPUs.</div>
                                                 <div className="product_price">Starting At 1,06,690.00</div>
-                                                <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i></div>
+                                                <div className="rating_r rating_r_4 banner_2_rating"></div>
                                                 <div className="button banner_2_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link>Explore</div>
                                             </div>
                                             
@@ -261,7 +275,7 @@ class Home extends Component {
                                                 <div className="banner_2_title">New Inspiron 11</div>
                                                 <div className="banner_2_text">This versatile 11.6" 2-in-1 offers four usage modes and an abundance of possibilities. Featuring the speed, simplicity and security of Chrome.</div>
                                                 <div className="product_price">Starting At 48,690.00</div>
-                                                <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                                <div className="rating_r rating_r_4 banner_2_rating"></div>
                                                 <div className="button banner_2_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link></div>
                                             </div>
                                             
