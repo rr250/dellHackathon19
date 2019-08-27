@@ -27,7 +27,7 @@ class Register extends Component {
                     <form onSubmit={this.handleSubmit} className="newsletter_form d-flex flex-column" style={{marginTop: 50, marginBottom: 100}}>
                         <div className="newsletter_title text-center" style={{marginBottom: 50}}>Register</div>
                         {this.props.auth.error ?
-                        <div class="alert alert-danger" role="alert">
+                        <div className="alert alert-danger" role="alert">
                             {this.props.auth.errorText}
                         </div>
                         :
