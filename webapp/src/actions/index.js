@@ -84,23 +84,19 @@ export const fetchItems = () => dispatch => {
     })
 }
 
-export const orderItem = (address, pincode, item, seller, callback) => dispatch => {
+export const orderItem = (address, pincode, item, callback) => dispatch => {
     axios.post('http://localhost:5000/order', {
         address,
         pincode,
         item,
-        seller
     }, {
         headers: {
             'Authorization': localStorage.getItem('token')
         }
     })
     .then(response => {
-        for(let i=0; i<response.data.length; i++) {
-            response.data[i]._id = response.data[i]._id['$oid']
-        }
         dispatch({type: FETCH_ORDERS, payload: response.data});
-        callback(response.data[0]._id);
+        callback(response.data.orderId);
     })
 }
 

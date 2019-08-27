@@ -27,7 +27,7 @@ def home():
 @app.route("/register", methods=["POST"])
 def register():
     # print(request.json)
-    if not request.json or 'email' not in request.json.keys() or 'username' not in request.json.keys():
+    if not request.json or 'email' not in request.json.keys() or 'password' not in request.json.keys() or 'email' not in request.json.keys():
         return jsonify("Incorrect form submission"), 400
     if db['users'].find_one({'email': request.json['email']}) is not None:
         return jsonify({'success': False, 'status': 'Email Already Exists'}), 400
@@ -39,21 +39,27 @@ def register():
 
     # get latest user ID
     latestId = db['users'].find_one({}, sort=[("userId", -1)])['userId']
+    names = request.json['name'].split(" ")
+    first = names[0].capitalize()
+    last = names[0].capitalize()
     # print(latestId)
     # insert
+
     user = db['users'].insert_one(
         {
             'email': request.json['email'],
-            'username': request.json['username'],
+            'username': names[0].lower()+"_"+names[-1].lower(),
             'password': hashed.decode('utf-8'),
-            'firstName': request.json['firstName'],
-            'lastName': request.json['lastName'],
+            'firstName': first,
+            'lastName': last,
             'userId': latestId+1,
             'createdOn': int(datetime.timestamp(datetime.now()) * 1000),
             'updatedOn': None,
             'orders': []
         })
-    return jsonify({'success': True, 'userId': str(user.inserted_id)}), 200
+    token = jwt.encode({'uid': str(user.inserted_id), 'exp': datetime.utcnow(
+        ) + timedelta(days=30)}, 'qwr48fv4df25gbt45vqer5544vre44d4v5e55vqer')
+    return jsonify({'success': True, '_id': str(user.inserted_id), 'token': token, "email": request.json['email'], "name": first}), 200
 
 
 # Hash the password and compare. return jwt
@@ -70,7 +76,7 @@ def login():
         ) + timedelta(days=30)}, 'qwr48fv4df25gbt45vqer5544vre44d4v5e55vqer')
         db['users'].update_one({"email": request.json['email']}, {
               "$set": {"isAuthenticated": True}})
-        return jsonify({'_id': str(user['_id']), 'firstName': user['firstName'], 'token': token.decode('utf-8')}), 200
+        return jsonify({'_id': str(user['_id']), 'name': user['firstName'] + " " + user['lastName'], 'token': token.decode('utf-8'), "email": user["email"]}), 200
     return jsonify("Unauthorized"), 401
 
 # Get inventory
@@ -104,7 +110,7 @@ def placeOrders():
     # print(token)
     payload = jwt.decode(token, 'qwr48fv4df25gbt45vqer5544vre44d4v5e55vqer')
     # print(payload)
-    userId, itemId = payload['uid'], data['itemId']
+    userId, itemId = payload['uid'], data['item']
 
     # get item price
     try:
@@ -121,6 +127,7 @@ def placeOrders():
         "item": itemId,
         "userId": userId,
         "amount": itemAmount,
+        "address": request.json['address'],
         "isCompleted": False,
         "createdOn": int(datetime.timestamp(datetime.now()) * 1000)
     })

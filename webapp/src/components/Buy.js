@@ -22,7 +22,7 @@ class Buy extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const addr = `${this.state.name}, ${this.state.address} - ${this.state.pincode}`
-        this.props.orderItem(addr, this.state.pincode, this.props.item._id, this.props.item.seller.$oid, (orderId) => this.props.history.push(`/orders/${orderId}`));
+        this.props.orderItem(addr, this.state.pincode, this.props.item._id, (orderId) => this.props.history.push(`/orders/${orderId}`));
     }
 
     render() {
