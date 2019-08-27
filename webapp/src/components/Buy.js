@@ -83,6 +83,8 @@ class Buy extends Component {
                                     <button type="submit" className="button cart_button_checkout">Place Order and Pay</button>
                                 </div>
                             </form>
+                        </div>
+                        <div style={{left: 0, right:0, margin: 'auto'}}>
                             <form className="newsletter_form d-flex flex-column" style={{marginTop: 50, marginBottom: 100}}>
                                 <div className="newsletter_title text-center" style={{marginBottom: 50}}>Not Buying Product?</div>
                                 <input type="text" className="newsletter_input"/><br/>
