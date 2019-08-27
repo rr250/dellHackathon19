@@ -79,7 +79,4 @@ function mapStateToProps(state, ownProps) {
     return { item: state.items[ownProps.match.params.id] };
 }
 
-export default connect(
-    mapStateToProps,
-    { fetchItems }
-)(Product);
+export default connect(mapStateToProps,{ fetchItems })(Product);
