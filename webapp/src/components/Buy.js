@@ -84,7 +84,7 @@ class Buy extends Component {
                                 </div>
                             </form>
                         </div>
-                        <div style={{left: 0, right:0, margin: 'auto'}}>
+                        <div style={{left: 0, right:0, margin: 'auto', align: 'left'}}>
                             <form className="newsletter_form d-flex flex-column" style={{marginTop: 50, marginBottom: 100}}>
                                 <div className="newsletter_title text-center" style={{marginBottom: 50}}>Not Buying Product?</div>
                                 <input type="text" className="newsletter_input"/><br/>
