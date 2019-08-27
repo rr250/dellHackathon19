@@ -6,6 +6,8 @@ export const AUTH_ERROR = "auth_error";
 export const FETCH_ITEMS = "fetch_items";
 export const ORDER_ITEM = "order_item";
 export const FETCH_ORDERS = "fetch_orders";
+export const FETCH_PREDICT = "fetch_predicts";
+
 
 export const loginUser = (email, password, callback) => dispatch => {
     axios
@@ -165,6 +167,31 @@ export const fetchOrders = () => dispatch => {
 
             // console.log(response.data);
             dispatch({ type: FETCH_ORDERS, payload: response.data });
+        })
+        .catch(error => {});
+};
+
+
+export const fetchAllRecommendItems = () => dispatch => {
+
+    let obj = {}
+    if (localStorage.getItem('token')) {
+        obj.isLoggedIn = true;
+    }
+    else{
+        obj.isLoggedIn = false;
+    }
+    axios
+        .post("http://localhost:5000/predict", obj, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        })
+        .then(response => {
+            for (let i = 0; i < response.data.length; i++) {
+                response.data[i]._id = response.data[i]._id["$oid"];
+            }
+            dispatch({ type: FETCH_PREDICT, payload: response.data });
         })
         .catch(error => {});
 };
