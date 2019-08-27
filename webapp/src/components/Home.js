@@ -12,11 +12,6 @@ const options = {
     autoplay: true
 };
 class Home extends Component {
-    componentDidMount() {
-        if (!this.props.item) {
-            this.props.fetchItems(this.props.location.pathname.split("/")[2]);
-        }
-    }
     
     render(){
     return (
