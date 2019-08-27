@@ -6,8 +6,8 @@ import numpy as np
 def train():
     pass
 
-def predict():
-    pass
+def getPredictions(orders, history):
+    return [1,2,3,4,5,6]
     
 def main(args):
     pass
