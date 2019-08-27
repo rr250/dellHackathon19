@@ -4,12 +4,12 @@ import './css/shop_responsive.css';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { fetchItems } from '../actions';
+import { fetchAllItems } from '../actions';
 
 class Shop extends Component {
     
     componentDidMount() {
-        this.props.fetchItems();
+        this.props.fetchAllItems();
     }
     
     renderItems = () => {
@@ -17,7 +17,7 @@ class Shop extends Component {
             return (
                 <div className="col-lg-3" key={item._id}>
                     <div className="product_border"></div>
-                    <div className="product_image"><img src={item.image} alt=""/></div>
+                    <div className="product_image"><img src={item.filename} alt=""/></div>
                     <div className="text-center">
                         <div className="product_price"></div>
                         <div className="product_name"><div><Link to={`/product/${item._id}`} tabindex="0">{item.name}</Link></div></div>
@@ -86,4 +86,4 @@ function mapStateToProps(state) {
     return { items: state.items };
 }
 
-export default connect(mapStateToProps, { fetchItems })(Shop);
+export default connect(mapStateToProps, { fetchAllItems })(Shop);

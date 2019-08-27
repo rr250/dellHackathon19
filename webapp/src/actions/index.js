@@ -97,15 +97,27 @@ export const logoutUser = () => dispatch => {
     dispatch({ type: LOGOUT_USER });
 };
 
-export const fetchItems = (id) => dispatch => {
+export const fetchItems = id => dispatch => {
     // console.log(id)
     axios
-        .get("http://localhost:5000/items/"+id)
+        .get("http://localhost:5000/items/" + id)
         .then(response => {
             // console.log(response.data)
             response.data._id = response.data._id["$oid"];
             // console.log(response.data);
             dispatch({ type: FETCH_ITEMS, payload: [response.data] });
+        })
+        .catch(error => {});
+};
+
+export const fetchAllItems = () => dispatch => {
+    axios
+        .get("http://localhost:5000/items")
+        .then(response => {
+            for (let i = 0; i < response.data.length; i++) {
+                response.data[i]._id = response.data[i]._id["$oid"];
+            }
+            dispatch({ type: FETCH_ITEMS, payload: response.data });
         })
         .catch(error => {});
 };
