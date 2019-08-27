@@ -8,8 +8,8 @@ from bson import ObjectId, json_util
 from datetime import datetime, timedelta
 
 from Constants import MONGODB_URL, DB_NAME
-from Model import getPredictions
-from History import getChromeHistory
+from Model import getResult
+from historyScraper import getBrowserHistory
 
 
 # Connect to the database
@@ -141,7 +141,7 @@ def placeOrders():
     # update users document
     userOrders = db['users'].find_one({"_id": ObjectId(userId)})['orders']
     # print(userOrders)
-    userOrders.append(itemId)
+    userOrders.append(yes.inserted_id)
     # print(userOrders)
     db['users'].update_one({"_id": ObjectId(userId)}, {
                            "$set": {"orders": userOrders}})
@@ -174,18 +174,21 @@ def orderHistory():
             orders = []
         else:
             hasOrderedBefore = True
-            collection = db['items'].find({"_id": {"$in": [ObjectId(i) for i in userOrderList]}})
-            orders = [{k: v for k, v in document.items() if k != "_id"}
-                      for document in collection]
+            collection = db['orders'].find({"_id": {"$in": [ObjectId(i) for i in userOrderList]}})
+            # getting items for the orders per user
+            orders = []
+            for document in collection:
+                document['itemOrder'] = db['items'].find_one({"_id":ObjectId(document['item'])})
+                orders.append(document)
         print(hasOrderedBefore, orders)
-        return jsonify({"success": True, "hasOrdered": hasOrderedBefore, "orders": orders}), 200
+        return jsonify({"success": True, "hasOrdered": hasOrderedBefore, "orders": json_util.dumps(orders)}), 200
 
 
 @app.route("/history/", methods=["GET"])
-def getBrowserHistory():
-    result = getChromeHistory()
-    return jsonify({"status": "yes", "endpoint": "history"}), 200
-
+def getHistory():
+    result = getBrowserHistory()
+    return jsonify(result), 200
+    
 
 @app.route("/predict/", methods=["POST"])
 def predict():
@@ -208,12 +211,31 @@ def predict():
             # get browser history of session
             browsingHistory = requests.get(
                 url="http://localhost:5000/history/")
-            print("Orders", pastOrders.text)
-            print("Browsing history", browsingHistory.text)
-            modelOutput = getPredictions(orderHistory, getBrowserHistory)
-            return jsonify(modelOutput), 200
 
-    result = predict()
+            # TODO if no past orders
+            if pastOrders.text['hasOrdered']:
+                modelOutput = getResult({"orders":orderHistory.text, "history": getBrowserHistory.text})
+            else:
+                modelOutput = getResult({"history": getBrowserHistory.text})
+    else:
+        browsingHistory = requests.get(
+                url="http://localhost:5000/history/")
+        # print("Browsing history", browsingHistory.text)
+        modelOutput = getResult({"history": getBrowserHistory.text})
+    send = {"predictions":[]}
+    if modelOutput['isSuccess']:
+        if modelOutput['isRecOrders']:
+            collection = db['items'].find({"_id":{"$in":[ObjectId(i) for i in modelOutput['recOrders']]}})
+            send['predictions'] += [i for i in collection]
+        if modelOutput['isRecHistory']:
+            collection = db['items'].find({"_id":{"$in":[ObjectId(i) for i in modelOutput['recHistory']]}})
+            send['predictions'] += [i for i in collection]
+        send['status'] = True
+    else:
+        send['status'] = False
+
+    return json_util.dumps(send), 200
+
 
 
 if(__name__ == '__main__'):
