@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 from Constants import MONGODB_URL, DB_NAME
 from Model import getResult
-from History import getChromeHistory
+from historyScraper import getBrowserHistory
 
 
 # Connect to the database
@@ -185,8 +185,8 @@ def orderHistory():
 
 
 @app.route("/history/", methods=["GET"])
-def getBrowserHistory():
-    result = getChromeHistory()
+def getHistory():
+    result = getBrowserHistory()
     return jsonify(result), 200
     
 

@@ -12,7 +12,7 @@ def getBrowserHistory():
         res.append(l1[0])
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome(executable_path='./chromedriver.exe',chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path='./chromedriver',chrome_options=chrome_options)
 
     products=[] 
     prices=[] 
@@ -125,4 +125,3 @@ def getBrowserHistory():
     df = pd.DataFrame({'Product Name':products,'Price':prices,'RAM':rams,'Storage':roms}) 
     result = df.to_json(orient='index')
     return result
-bhj=getBrowserHistory()
