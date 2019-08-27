@@ -172,7 +172,7 @@ export const fetchOrders = () => dispatch => {
 };
 
 
-export const fetchAllRecommendItems = () => dispatch => {
+export const fetchPredicts = () => dispatch => {
 
     let obj = {}
     if (localStorage.getItem('token')) {

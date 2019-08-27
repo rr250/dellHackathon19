@@ -4,7 +4,7 @@ import './css/responsive.css';
 import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel2'
 import { connect } from "react-redux";
-import { fetchItems } from "../actions";
+import { fetchPredicts } from "../actions";
 
 const options = {
     items: 1,
@@ -293,4 +293,4 @@ function mapStateToProps(state, ownProps) {
     return { item: state.items[ownProps.match.params.id] };
 }
 
-export default connect(mapStateToProps,{ fetchItems })(Home);
+export default connect(mapStateToProps,{ fetchPredicts })(Home);
