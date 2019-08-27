@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './css/cart_styles.css';
 import './css/cart_responsive.css';
+import { Link } from 'react-router-dom';
 import { fetchItems, orderItem } from '../actions';
 
 class Buy extends Component {
@@ -80,6 +81,13 @@ class Buy extends Component {
                                 <input type="number" className="newsletter_input" required="required" placeholder="Pincode" onChange={(e) => this.setState({pincode: e.target.value})}/><br/>
                                 <div className="cart_buttons">
                                     <button type="submit" className="button cart_button_checkout">Place Order and Pay</button>
+                                </div>
+                            </form>
+                            <form className="newsletter_form d-flex flex-column" style={{marginTop: 50, marginBottom: 100}}>
+                                <div className="newsletter_title text-center" style={{marginBottom: 50}}>Not Buying Product?</div>
+                                <input type="text" className="newsletter_input"/><br/>
+                                <div className="cart_buttons">
+                                    <button type="submit" className="button cart_button_checkout"><Link to="/">Submit Feedback</Link></button>
                                 </div>
                             </form>
                         </div>
