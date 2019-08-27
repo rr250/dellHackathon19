@@ -133,7 +133,7 @@ export const orderItem = (address, pincode, item, callback) => dispatch => {
 
 export const fetchOrders = () => dispatch => {
     axios
-        .get("http://localhost:5000/orders", {
+        .get("http://localhost:5000/user/orderHistory", {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -142,15 +142,16 @@ export const fetchOrders = () => dispatch => {
             for (let i = 0; i < response.data.length; i++) {
                 response.data[i]._id = response.data[i]._id["$oid"];
             }
-            response.data.sort((a, b) => {
-                console.log(b.expected_delivery_by.$date);
-                return (
-                    new Date(a.expected_delivery_by.$date) -
-                    new Date(b.expected_delivery_by.$date)
-                );
-            });
-
             console.log(response.data);
+            // response.data.sort((a, b) => {
+            //     console.log(b.crea);
+            //     return (
+            //         new Date(a.expected_delivery_by.$date) -
+            //         new Date(b.expected_delivery_by.$date)
+            //     );
+            // });
+
+            // console.log(response.data);
             dispatch({ type: FETCH_ORDERS, payload: response.data });
         })
         .catch(error => {});

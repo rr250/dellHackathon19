@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./css/product_styles.css";
 import "./css/product_responsive.css";
 import { fetchItems } from "../actions";
+// import image from "../../public/images/banner_background.jpg"
 
 class Product extends Component {
     componentDidMount() {
@@ -22,7 +23,7 @@ class Product extends Component {
                         <div className="row">
                             <div className="col-lg-5 order-lg-2 order-1">
                                 <div className="image_selected">
-                                    <img src={item.image} alt="" />
+                                    <img src={item.filename} alt="" />
                                 </div>
                             </div>
 

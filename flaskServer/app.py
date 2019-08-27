@@ -107,7 +107,7 @@ def get_item(item_id):
 @app.route("/order", methods=['POST'])
 def placeOrders():
     """This function executes when user clicks on the order items button. It takes data from url and updates the database."""
-    data = request.json  # address,pincode,item,seller
+    data = request.json  # address,pincode,item,
     try:
         token = request.headers['Authorization']
     except KeyError:
@@ -119,7 +119,7 @@ def placeOrders():
 
     # get item price
     try:
-        itemAmount = db['items'].find_one({"itemId": itemId})['price']
+        itemAmount = db['items'].find_one({"_id": ObjectId(itemId)})['price']
     except KeyError:
         return jsonify("incorrect itemId"), 400
 
@@ -149,7 +149,7 @@ def placeOrders():
     return jsonify({"orderId": str(yes.inserted_id)}), 200
 
 
-@app.route("/user/orderHistory/", methods=["GET"])
+@app.route("/user/orderHistory", methods=["GET"])
 def orderHistory():
     try:
         token = request.headers['Authorization']
@@ -168,12 +168,13 @@ def orderHistory():
     except Exception as e:
         print(e)
     else:
+        print(userOrderList)
         if not userOrderList:
             hasOrderedBefore = False
             orders = []
         else:
             hasOrderedBefore = True
-            collection = db['items'].find({"itemId": {"$in": userOrderList}})
+            collection = db['items'].find({"_id": {"$in": [ObjectId(i) for i in userOrderList]}})
             orders = [{k: v for k, v in document.items() if k != "_id"}
                       for document in collection]
         print(hasOrderedBefore, orders)

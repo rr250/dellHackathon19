@@ -15,13 +15,15 @@ class Buy extends Component {
 
     componentDidMount() {
         if(!this.props.item) {
-            this.props.fetchItems();
+            // console.log(this.props.location.pathname.split("/")[2]);
+            this.props.fetchItems(this.props.location.pathname.split("/")[2]);
         }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         const addr = `${this.state.name}, ${this.state.address} - ${this.state.pincode}`
+        console.log(this.props.item._id);
         this.props.orderItem(addr, this.state.pincode, this.props.item._id, (orderId) => this.props.history.push(`/orders/${orderId}`));
     }
 
@@ -43,7 +45,7 @@ class Buy extends Component {
                                 <div className="cart_items">
                                     <ul className="cart_list">
                                         <li className="cart_item clearfix">
-                                            <div className="cart_item_image"><img src={item.image} alt=""/></div>
+                                            <div className="cart_item_image"><img src={item.filename} alt=""/></div>
                                             <div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                                 <div className="cart_item_name cart_info_col">
                                                     <div className="cart_item_title">Name</div>
