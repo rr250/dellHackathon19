@@ -247,6 +247,12 @@ $(document).ready(function()
 
 	*/
 
+	$(document).ready(function() {
+ 
+		$("#owl-carousel").owlCarousel();
+	   
+	  });
+
 	function initDealsSlider()
 	{
 		if($('.deals_slider').length)
@@ -520,7 +526,11 @@ $(document).ready(function()
 	11. Init Popular Categories Slider
 
 	*/
-
+	$(document).ready(function() {
+ 
+		$("#owl-example").owlCarousel();
+	   
+	});
 	function initPopularSlider()
 	{
 		if($('.popular_categories_slider').length)

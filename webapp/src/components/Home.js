@@ -2,8 +2,13 @@ import React from 'react';
 import './css/main_styles.css';
 import './css/responsive.css';
 import { Link } from 'react-router-dom';
-
+import OwlCarousel from 'react-owl-carousel2'
 export default () => {
+    const options = {
+        items: 1,
+        rewind: true,
+        autoplay: true
+    };
     return (
         <div>
             <div className="banner">
@@ -70,98 +75,96 @@ export default () => {
                 </div>
             </div>
 
-            <div className="popular_categories">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-3">
-                            <div className="popular_categories_content">
-                                <div className="popular_categories_title">Recommendations</div>
-                                <div className="popular_categories_slider_nav">
-                                    <div className="popular_categories_prev popular_categories_nav"><i className="fas fa-angle-left ml-auto"></i></div>
-                                    <div className="popular_categories_next popular_categories_nav"><i className="fas fa-angle-right ml-auto"></i></div>
+            <div class="popular_categories">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="popular_categories_content">
+                                <div class="popular_categories_title">Popular Categories</div>
+                                <div class="popular_categories_slider_nav">
+                                    <div class="popular_categories_prev popular_categories_nav"><i class="fas fa-angle-left ml-auto"></i></div>
+                                    <div class="popular_categories_next popular_categories_nav"><i class="fas fa-angle-right ml-auto"></i></div>
                                 </div>
-                                <div className="popular_categories_link"><a href="shop">full catalog</a></div>
+                                <div class="popular_categories_link"><a href="#">full catalog</a></div>
                             </div>
                         </div>
+                        
+                        <div class="col-lg-9">
+                            <div class="popular_categories_slider_container">
+                                <OwlCarousel >
 
-
-                        <div className="col-lg-9">
-                            <div className="popular_categories_slider_nav">
-                                <div className="owl-carousel owl-theme popular_categories_slider">
-
-                                    <div className="owl-item">
-                                        <div className="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/popular_1.png" alt=""/></div>
-                                            <div className="popular_category_text">Smartphones & Tablets</div>
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div class="popular_category_image"><img src="images/popular_1.png" alt=""/></div>
+                                            <div class="popular_category_text">Smartphones & Tablets</div>
                                         </div>
                                     </div>
 
-                                    <div className="owl-item">
-                                        <div className="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/popular_2.png" alt=""/></div>
-                                            <div className="popular_category_text">Computers & Laptops</div>
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div class="popular_category_image"><img src="images/popular_2.png" alt=""/></div>
+                                            <div class="popular_category_text">Computers & Laptops</div>
                                         </div>
                                     </div>
 
-                                    <div className="owl-item">
-                                        <div className="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/popular_3.png" alt=""/></div>
-                                            <div className="popular_category_text">Gadgets</div>
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div class="popular_category_image"><img src="images/popular_3.png" alt=""/></div>
+                                            <div class="popular_category_text">Gadgets</div>
                                         </div>
                                     </div>
 
-                                    <div className="owl-item">
-                                        <div className="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/popular_4.png" alt=""/></div>
-                                            <div className="popular_category_text">Video Games & Consoles</div>
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div class="popular_category_image"><img src="images/popular_4.png" alt=""/></div>
+                                            <div class="popular_category_text">Video Games & Consoles</div>
                                         </div>
                                     </div>
 
-                                    <div className="owl-item">
-                                        <div className="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/popular_5.png" alt=""/></div>
-                                            <div className="popular_category_text">Accessories</div>
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div class="popular_category_image"><img src="images/popular_5.png" alt=""/></div>
+                                            <div class="popular_category_text">Accessories</div>
                                         </div>
                                     </div>
 
-                                </div>
+                                </OwlCarousel>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+                    <div className="banner_2">
+                        <div className="banner_2_background" style={{backgroundImage: "url(images/banner_2_background.jpg)"}}></div>
+                        <div className="banner_2_container">
+                            <div className="banner_2_dots"></div>
 
-            <div className="banner_2">
-                <div className="banner_2_background" style={{backgroundImage: "url(images/banner_2_background.jpg)"}}></div>
-                <div className="banner_2_container">
-                    <div className="banner_2_dots"></div>
+                            <OwlCarousel options={options}>
 
-                    <div className="carousel owl-theme banner_2_slider">
-
-                        <div className="owl-item">
-                            <div className="banner_2_item">
-                                <div className="container fill_height">
-                                    <div className="row fill_height">
-                                        <div className="col-lg-4 col-md-6 fill_height">
-                                            <div className="banner_2_content">
-                                                <div className="banner_2_category">Presenting</div>
-                                                <div className="banner_2_title">The New XPS 15</div>
-                                                <div className="banner_2_text">Dell's smallest 39.6cm (15.6) performance laptop with a stunning InfinityEdge display. Now featuring 8th Gen Intel® Core™ processors with up to 6 cores and 12 threads.</div>
-                                                <div className="product_price">Starting At 1,27,290.00</div>
-                                                <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                                <div className="button banner_2_button"><a href="#">Explore</a></div>
+                                <div className="owl-item">
+                                    <div className="banner_2_item">
+                                        <div className="container fill_height">
+                                            <div className="row fill_height">
+                                                <div className="col-lg-4 col-md-6 fill_height">
+                                                    <div className="banner_2_content">
+                                                        <div className="banner_2_category">Presenting</div>
+                                                        <div className="banner_2_title">The New XPS 15</div>
+                                                        <div className="banner_2_text">Dell's smallest 39.6cm (15.6) performance laptop with a stunning InfinityEdge display. Now featuring 8th Gen Intel® Core™ processors with up to 6 cores and 12 threads.</div>
+                                                        <div className="product_price">Starting At 1,27,290.00</div>
+                                                        <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                                        <div className="button banner_2_button"><a href="#">Explore</a></div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div className="col-lg-8 col-md-6 fill_height">
+                                                    <div className="banner_2_image_container">
+                                                        <div className="banner_2_image"><img src="images/Capture3.png" alt=""/></div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            
-                                        </div>
-                                        <div className="col-lg-8 col-md-6 fill_height">
-                                            <div className="banner_2_image_container">
-                                                <div className="banner_2_image"><img src="images/Capture3.png" alt=""/></div>
-                                            </div>
-                                        </div>
+                                        </div>			
                                     </div>
-                                </div>			
-                            </div>
-                        </div>
+                                </div>
 
                         <div className="owl-item">
                             <div className="banner_2_item">
@@ -213,7 +216,7 @@ export default () => {
                             </div>
                         </div>
 
-                    </div>
+                    </OwlCarousel>
                 </div>
             </div>
             <script src="js/custom.js"></script>
