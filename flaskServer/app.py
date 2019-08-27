@@ -1,4 +1,5 @@
 import bcrypt
+import requests
 import jwt
 from flask_cors import CORS
 from flask import Flask, jsonify, abort, request
@@ -7,6 +8,8 @@ from bson import ObjectId, json_util
 from datetime import datetime, timedelta
 
 from Constants import MONGODB_URL, DB_NAME
+from Model import getPredictions
+from History import getChromeHistory
 
 
 # Connect to the database
@@ -160,6 +163,38 @@ def orderHistory():
             orders = [{k:v for k,v in document.items() if k != "_id"} for document in collection]
         print(hasOrderedBefore, orders)
         return jsonify({"success":True, "hasOrdered":hasOrderedBefore, "orders": orders}), 200
+
+@app.route("/history/", methods=["GET"])
+def getBrowserHistory():
+    result = getChromeHistory()
+    return jsonify({"status":"yes", "endpoint":"history"}), 200
+
+@app.route("/predict/", methods=["POST"])
+def predict():
+    # get OrderHistory if user is loggedIn otherwise don't
+    data = request.json
+    if data['isLoggedIn']:
+        try:
+            token = request.headers['Authorization']
+        except KeyError:
+            abort(401)
+        else:
+            payload = jwt.decode(token, 'qwr48fv4df25gbt45vqer5544vre44d4v5e55vqer')
+        # print(payload)
+            userId = payload['uid']
+            print(userId)
+            # get order history of user
+            pastOrders = requests.get(url="http://localhost:5000/user/orderHistory/", headers=request.headers)
+            # get browser history of session
+            browsingHistory = requests.get(url="http://localhost:5000/history/")
+            print("Orders",pastOrders.text)
+            print("Browsing history",browsingHistory.text)
+            modelOutput = getPredictions(orderHistory, getBrowserHistory)
+            return jsonify(modelOutput),200
+
+
+
+    result = predict()
 
         
 if(__name__ == '__main__'):
