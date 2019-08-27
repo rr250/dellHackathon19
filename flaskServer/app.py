@@ -1,4 +1,5 @@
 import bcrypt
+import json
 import requests
 import jwt
 from flask_cors import CORS
@@ -157,7 +158,7 @@ def orderHistory():
         abort(401)
     # print(token)
     payload = jwt.decode(token, 'qwr48fv4df25gbt45vqer5544vre44d4v5e55vqer')
-    print(payload)
+    # print(payload)
     userId = payload['uid']
 
     try:
@@ -168,32 +169,35 @@ def orderHistory():
     except Exception as e:
         print(e)
     else:
-        print(userOrderList)
+        # print(userOrderList)
         if not userOrderList:
             hasOrderedBefore = False
             orders = []
         else:
             hasOrderedBefore = True
-            collection = db['orders'].find({"_id": {"$in": [ObjectId(i) for i in userOrderList]}})
+            collection = db['orders'].find(
+                {"_id": {"$in": [ObjectId(i) for i in userOrderList]}})
             # getting items for the orders per user
             orders = []
             for document in collection:
-                document['itemOrder'] = db['items'].find_one({"_id":ObjectId(document['item'])})
+                document['itemOrder'] = db['items'].find_one(
+                    {"_id": ObjectId(document['item'])})
                 orders.append(document)
-        print(hasOrderedBefore, orders)
-        return jsonify({"success": True, "hasOrdered": hasOrderedBefore, "orders": json_util.dumps(orders)}), 200
+        # print(hasOrderedBefore, orders)
+        return json_util.dumps({"success": True, "hasOrdered": hasOrderedBefore, "orders": json_util.dumps(orders)}), 200
 
 
 @app.route("/history/", methods=["GET"])
 def getHistory():
     result = getBrowserHistory()
     return jsonify(result), 200
-    
+
 
 @app.route("/predict/", methods=["POST"])
 def predict():
     # get OrderHistory if user is loggedIn otherwise don't
     data = request.json
+    # print(type(request.headers), dict(request.headers))
     if data['isLoggedIn']:
         try:
             token = request.headers['Authorization']
@@ -204,38 +208,41 @@ def predict():
                 token, 'qwr48fv4df25gbt45vqer5544vre44d4v5e55vqer')
         # print(payload)
             userId = payload['uid']
-            print(userId)
+            # print(userId)
             # get order history of user
             pastOrders = requests.get(
-                url="http://localhost:5000/user/orderHistory/", headers=request.headers)
+                url="http://localhost:5000/user/orderHistory", headers=dict(request.headers))
             # get browser history of session
             browsingHistory = requests.get(
-                url="http://localhost:5000/history/")
+                url="http://localhost:5000/history")
 
             # TODO if no past orders
-            if pastOrders.text['hasOrdered']:
-                modelOutput = getResult({"orders":orderHistory.text, "history": getBrowserHistory.text})
+            # print(json.loads(pastOrders.text))
+            if json.loads(pastOrders.text)['hasOrdered']:
+                modelOutput = getResult(
+                    orders= json.loads(pastOrders.text), history=json.loads(browsingHistory.text))
             else:
-                modelOutput = getResult({"history": getBrowserHistory.text})
+                modelOutput = getResult(history= json.loads(browsingHistory.text))
     else:
         browsingHistory = requests.get(
-                url="http://localhost:5000/history/")
+            url="http://localhost:5000/history")
         # print("Browsing history", browsingHistory.text)
-        modelOutput = getResult({"history": getBrowserHistory.text})
-    send = {"predictions":[]}
+        modelOutput = getResult(history=json.loads(browsingHistory.text))
+    send = {"predictions": []}
     if modelOutput['isSuccess']:
         if modelOutput['isRecOrders']:
-            collection = db['items'].find({"_id":{"$in":[ObjectId(i) for i in modelOutput['recOrders']]}})
+            collection = db['items'].find(
+                {"_id": {"$in": [ObjectId(str(i)) for i in modelOutput['recOrders']]}})
             send['predictions'] += [i for i in collection]
         if modelOutput['isRecHistory']:
-            collection = db['items'].find({"_id":{"$in":[ObjectId(i) for i in modelOutput['recHistory']]}})
+            collection = db['items'].find(
+                {"_id": {"$in": [ObjectId(i) for i in modelOutput['recHistory']]}})
             send['predictions'] += [i for i in collection]
         send['status'] = True
     else:
         send['status'] = False
 
     return json_util.dumps(send), 200
-
 
 
 if(__name__ == '__main__'):
