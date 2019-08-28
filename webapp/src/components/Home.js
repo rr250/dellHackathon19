@@ -11,6 +11,14 @@ const options = {
     rewind: true,
     autoplay: true
 };
+
+const options2 = {
+    items: 3,
+    rewind: true,
+    autoplay: true,
+    autoplayTimeout: 1000,
+    loop: true
+};
 class Home extends Component {
     
     render(){
@@ -90,7 +98,7 @@ class Home extends Component {
                         
                         <div class="col-lg-9">
                             <div class="popular_categories_slider_container">
-                                <OwlCarousel >
+                                <OwlCarousel  options={options2}>
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
