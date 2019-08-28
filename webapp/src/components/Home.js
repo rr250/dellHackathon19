@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { Component} from 'react';
 import './css/main_styles.css';
 import './css/responsive.css';
 import { Link } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel2'
-export default () => {
-    const options = {
-        items: 1,
-        rewind: true,
-        autoplay: true
-    };
+import { connect } from "react-redux";
+import { fetchPredicts } from "../actions";
+
+const options = {
+    items: 1,
+    rewind: true,
+    autoplay: true
+};
+
+const options2 = {
+    items: 3,
+    rewind: true,
+    autoplay: true,
+    autoplayTimeout: 1000,
+    loop: true
+};
+class Home extends Component {
+    
+    render(){
     return (
         <div>
             <div className="banner">
@@ -21,7 +34,7 @@ export default () => {
                                 <div className="banner_price"><span></span></div><br/><br/><br/><br/><br/><br/><br/><br/>
                                 <div className="banner_product_name">The New Alienware</div>
                                 <h1 className="banner_text">Built for the Ultimate Champions</h1>
-                                <div className="button banner_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link></div>
+                                <div className="button banner_button"><Link to="product/51851a9429f0f33ff0de9148">Shop Now</Link></div>
                             </div>
                         </div>
                     </div>
@@ -74,6 +87,75 @@ export default () => {
                     </div>
                 </div>
             </div>
+            <div class="popular_categories">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="popular_categories_content">
+                                <div class="popular_categories_title">Recommendations</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-9">
+                            <div class="popular_categories_slider_container">
+                                <OwlCarousel  options={options2}>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/1.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Inspiron 5370</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9110">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/2.jpg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Inspiron 5570</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9114">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/3.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell XPS 13</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9120">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/4.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Latitude 5580</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9131">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
+                                            <div className="popular_category_text">The New XPS 15</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9152">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/6.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Vostro 5471</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9160">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+                                    
+
+                                </OwlCarousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="popular_categories">
                 <div class="container">
@@ -151,8 +233,8 @@ export default () => {
                                                         <div className="banner_2_title">The New XPS 15</div>
                                                         <div className="banner_2_text">Dell's smallest 39.6cm (15.6) performance laptop with a stunning InfinityEdge display. Now featuring 8th Gen Intel® Core™ processors with up to 6 cores and 12 threads.</div>
                                                         <div className="product_price">Starting At 1,27,290.00</div>
-                                                        <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                                        <div className="button banner_2_button"><a href="#">Explore</a></div>
+                                                        <div className="rating_r rating_r_4 banner_2_rating"></div>
+                                                        <div className="button banner_2_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link></div>
                                                     </div>
                                                     
                                                 </div>
@@ -176,8 +258,8 @@ export default () => {
                                                 <div className="banner_2_title">New Dell G7 15 </div>
                                                 <div className="banner_2_text">38.1 cm (15) gaming laptop designed for a powerful in-game experience featuring NVIDIA® GeForce® GTX 1060 graphics and the latest 8th Gen Intel® Quad-and-Hex Core™ CPUs.</div>
                                                 <div className="product_price">Starting At 1,06,690.00</div>
-                                                <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i></div>
-                                                <div className="button banner_2_button"><a href="#">Explore</a></div>
+                                                <div className="rating_r rating_r_4 banner_2_rating"></div>
+                                                <div className="button banner_2_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link>Explore</div>
                                             </div>
                                             
                                         </div>
@@ -201,8 +283,8 @@ export default () => {
                                                 <div className="banner_2_title">New Inspiron 11</div>
                                                 <div className="banner_2_text">This versatile 11.6" 2-in-1 offers four usage modes and an abundance of possibilities. Featuring the speed, simplicity and security of Chrome.</div>
                                                 <div className="product_price">Starting At 48,690.00</div>
-                                                <div className="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                                <div className="button banner_2_button"><a href="#">Explore</a></div>
+                                                <div className="rating_r rating_r_4 banner_2_rating"></div>
+                                                <div className="button banner_2_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link></div>
                                             </div>
                                             
                                         </div>
@@ -223,3 +305,9 @@ export default () => {
         </div>
     )
 } 
+}
+function mapStateToProps(state, ownProps) {
+    return { item: state.items[ownProps.match.params.id] };
+}
+
+export default connect(mapStateToProps,{ fetchPredicts })(Home);

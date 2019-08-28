@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './css/cart_styles.css';
 import './css/cart_responsive.css';
+import { Link } from 'react-router-dom';
 import { fetchItems, orderItem } from '../actions';
 
 class Buy extends Component {
@@ -15,14 +16,16 @@ class Buy extends Component {
 
     componentDidMount() {
         if(!this.props.item) {
-            this.props.fetchItems();
+            // console.log(this.props.location.pathname.split("/")[2]);
+            this.props.fetchItems(this.props.location.pathname.split("/")[2]);
         }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         const addr = `${this.state.name}, ${this.state.address} - ${this.state.pincode}`
-        this.props.orderItem(addr, this.state.pincode, this.props.item._id, this.props.item.seller.$oid, (orderId) => this.props.history.push(`/orders/${orderId}`));
+        console.log(this.props.item._id);
+        this.props.orderItem(addr, this.state.pincode, this.props.item._id, (orderId) => this.props.history.push(`/orders/${orderId}`));
     }
 
     render() {
@@ -43,7 +46,7 @@ class Buy extends Component {
                                 <div className="cart_items">
                                     <ul className="cart_list">
                                         <li className="cart_item clearfix">
-                                            <div className="cart_item_image"><img src={item.image} alt=""/></div>
+                                            <div className="cart_item_image"><img src={item.filename} alt=""/></div>
                                             <div className="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                                 <div className="cart_item_name cart_info_col">
                                                     <div className="cart_item_title">Name</div>
@@ -78,6 +81,15 @@ class Buy extends Component {
                                 <input type="number" className="newsletter_input" required="required" placeholder="Pincode" onChange={(e) => this.setState({pincode: e.target.value})}/><br/>
                                 <div className="cart_buttons">
                                     <button type="submit" className="button cart_button_checkout">Place Order and Pay</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div style={{left: 0, right:0, margin: 'auto', align: 'left'}}>
+                            <form className="newsletter_form d-flex flex-column" style={{marginTop: 50, marginBottom: 100}}>
+                                <div className="newsletter_title text-center" style={{marginBottom: 50}}>Not Buying Product?</div>
+                                <input type="text" className="newsletter_input"/><br/>
+                                <div className="cart_buttons">
+                                    <button type="submit" className="button cart_button_checkout"><Link to="/">Submit Feedback</Link></button>
                                 </div>
                             </form>
                         </div>
