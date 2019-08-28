@@ -26,7 +26,7 @@ class Home extends Component {
                                 <div className="banner_price"><span></span></div><br/><br/><br/><br/><br/><br/><br/><br/>
                                 <div className="banner_product_name">The New Alienware</div>
                                 <h1 className="banner_text">Built for the Ultimate Champions</h1>
-                                <div className="button banner_button"><Link to="product/5b851a9429f0f33ff0de91df">Shop Now</Link></div>
+                                <div className="button banner_button"><Link to="product/51851a9429f0f33ff0de9148">Shop Now</Link></div>
                             </div>
                         </div>
                     </div>
@@ -94,9 +94,33 @@ class Home extends Component {
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
-                                            <div className="popular_category_text">The New XPS 15</div>
-                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
+                                            <div className="popular_category_image"><img src="images/1.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Inspiron 5370</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9110">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/2.jpg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Inspiron 5570</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9114">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/3.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell XPS 13</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9120">Buy Now</Link></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="owl-item">
+                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
+                                            <div className="popular_category_image"><img src="images/4.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Latitude 5580</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9131">Buy Now</Link></div>
                                         </div>
                                     </div>
 
@@ -104,39 +128,15 @@ class Home extends Component {
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
                                             <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
                                             <div className="popular_category_text">The New XPS 15</div>
-                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9152">Buy Now</Link></div>
                                         </div>
                                     </div>
 
                                     <div class="owl-item">
                                         <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
-                                            <div className="popular_category_text">The New XPS 15</div>
-                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="owl-item">
-                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
-                                            <div className="popular_category_text">The New XPS 15</div>
-                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="owl-item">
-                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
-                                            <div className="popular_category_text">The New XPS 15</div>
-                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="owl-item">
-                                        <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                            <div className="popular_category_image"><img src="images/Capture3.png" alt=""/></div>
-                                            <div className="popular_category_text">The New XPS 15</div>
-                                            <div className="button"><Link to="product/5b851a9429f0f33ff0de91df">Rs 123123</Link></div>
+                                            <div className="popular_category_image"><img src="images/6.jpeg" alt=""/></div>
+                                            <div className="popular_category_text">Dell Vostro 5471</div>
+                                            <div className="button"><Link to="product/51851a9429f0f33ff0de9160">Buy Now</Link></div>
                                         </div>
                                     </div>
                                     
